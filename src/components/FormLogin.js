@@ -31,7 +31,11 @@ export default () => {
     }
 
     async function submitLogin(credentials){
-        await axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials);
+        await axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials).then(response => {
+            console.log(response);
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     return (

@@ -4,7 +4,7 @@ import FormLogin from './components/FormLogin';
 export default () => {
     return (
         <div>
-            <FormLogin/>
+            <FormLogin />
         </div>
 
     )
