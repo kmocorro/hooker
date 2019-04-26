@@ -22,12 +22,18 @@ export default () => {
     function handleSubmit(e){
         if(username.value !== '' && password.value !== ''){
             let credentials = { username: username.value, password: password.value };
-
+            /*
             submitLogin(credentials).then(function(response){
                 console.log(response);
             }, function(err){
                 console.log(err);
             });
+
+            */
+
+            axiosLogin().then(data => {
+                response.json({ message: 'RECEIVED! ', data});
+            })
 
         } else {
             e.preventDefault();
@@ -39,6 +45,14 @@ export default () => {
             return response
         }).catch(err => {
             return err
+        });
+    }
+
+    function axiosLogin(credentials){
+        return new Promise((resolve, reject) => {
+            return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials).then(response => {
+                return response
+            });
         });
     }
 
