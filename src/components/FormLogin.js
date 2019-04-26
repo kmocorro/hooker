@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default () => {
 
     const username = useInputer('');
     const password = useInputer('');
+
+    useEffect(() => {
+
+        let credentials = { username: username.value, password: password.value };
+
+        postLoginPromise(credentials).then(res => {console.log(res)});
+
+    })
 
     function useInputer(init){
         const [ value, setValue ] = useState(init);
@@ -23,7 +31,7 @@ export default () => {
         if(username.value !== '' && password.value !== ''){
             let credentials = { username: username.value, password: password.value };
 
-            postLoginPromise(credentials).then(res => {console.log(res)});
+            /*postLoginPromise(credentials).then(res => {console.log(res)});*/
 
         } else {
             e.preventDefault();
