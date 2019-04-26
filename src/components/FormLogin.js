@@ -23,18 +23,22 @@ export default () => {
         if(username.value !== '' && password.value !== ''){
             let credentials = { username: username.value, password: password.value };
 
-            submitLogin(credentials);
+            submitLogin(credentials).then(function(response){
+                console.log(response);
+            }, function(err){
+                console.log(err);
+            });
 
         } else {
             e.preventDefault();
         }
     }
 
-    function submitLogin(credentials){
-        axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials).then(response => {
-            console.log(response.data);
+    async function submitLogin(credentials){
+        await axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials).then(response => {
+            return response
         }).catch(err => {
-            console.log(err);
+            return err
         });
     }
 
