@@ -33,7 +33,7 @@ export default () => {
 
             axiosLogin(credentials).then(data => {
                 console.log({ message: 'RECEIVED! ', data});
-            })
+            });
 
         } else {
             e.preventDefault();
@@ -51,7 +51,7 @@ export default () => {
     function axiosLogin(credentials){
         return new Promise((resolve, reject) => {
             return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials).then(response => {
-                return response
+                resolve(response) 
             });
         });
     }
