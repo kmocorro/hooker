@@ -23,28 +23,24 @@ export default () => {
         if(username.value !== '' && password.value !== ''){
             let credentials = { username: username.value, password: password.value };
 
-            console.log(credentials);
-
-            axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials).then(response => {
-                console.log(response);
-                return response;
-            }).catch(err => {
-                console.log(err);
-            });
+            postLoginPromise(credentials).then(res => {console.log(res)});
 
         } else {
             e.preventDefault();
         }
     }
 
+    function postLoginPromise(credentials){
+        return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials)
+        .then(response => response.data)
+        .catch(err => console.error(err));
+    }
+
     return (
         <div>
             <div className="col-md-3">
                 <form
-                    onSubmit={(e) => { handleSubmit(e).then(response => {
-                        console.log(response);
-                    }) 
-                }}
+                    onSubmit={handleSubmit}
                 >   
                     <fieldset>
                         <div className="form-group">
