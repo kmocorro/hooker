@@ -22,17 +22,14 @@ export default () => {
     function handleSubmit(e){
         if(username.value !== '' && password.value !== ''){
             let credentials = { username: username.value, password: password.value };
-            /*
-            submitLogin(credentials).then(function(response){
+
+            console.log(credentials);
+
+            axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials).then(response => {
                 console.log(response);
-            }, function(err){
+                return response;
+            }).catch(err => {
                 console.log(err);
-            });
-
-            */
-
-            axiosLogin(credentials).then(data => {
-                console.log({ message: 'RECEIVED! ', data});
             });
 
         } else {
@@ -40,27 +37,14 @@ export default () => {
         }
     }
 
-    async function submitLogin(credentials){
-        await axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials).then(response => {
-            return response
-        }).catch(err => {
-            return err
-        });
-    }
-
-    function axiosLogin(credentials){
-        return new Promise((resolve, reject) => {
-            return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials).then(response => {
-                resolve(response) 
-            });
-        });
-    }
-
     return (
         <div>
             <div className="col-md-3">
                 <form
-                    onSubmit={(e) => { handleSubmit(e) }}
+                    onSubmit={(e) => { handleSubmit(e).then(response => {
+                        console.log(response);
+                    }) 
+                }}
                 >   
                     <fieldset>
                         <div className="form-group">
