@@ -30,9 +30,9 @@ export default () => {
         }
     }
 
-    async function submitLogin(credentials){
-        await axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials).then(response => {
-            console.log(response);
+    function submitLogin(credentials){
+        axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials).then(response => {
+            console.log(response.data);
         }).catch(err => {
             console.log(err);
         });
