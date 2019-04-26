@@ -31,7 +31,7 @@ export default () => {
 
             */
 
-            axiosLogin().then(data => {
+            axiosLogin(credentials).then(data => {
                 console.log({ message: 'RECEIVED! ', data});
             })
 
