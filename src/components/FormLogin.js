@@ -32,7 +32,7 @@ export default () => {
             */
 
             axiosLogin().then(data => {
-                response.json({ message: 'RECEIVED! ', data});
+                console.log({ message: 'RECEIVED! ', data});
             })
 
         } else {
