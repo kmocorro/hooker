@@ -3,42 +3,40 @@ import axios from 'axios';
 
 export default () => {
 
-    const username = useInputer('');
-    const password = useInputer('');
+    const username = useCredential();
+    const password = useCredential();
 
-    function useInputer(init){
-        const [ value, setValue ] = useState(init);
+    function useCredential(){ // custom hook
+        const [ value, setValue ] = useState('');
 
         function handleChange(e){
             setValue(e.target.value);
         }
 
         return {
-            value: value,
-            handleChange
+            value,
+            onChange: handleChange
         }
+
     }
-    
-    function handleSubmit(e){
+
+    function handleLoginSubmit(e){
         e.preventDefault();
+        let credentials = {username: username.value, password: password.value};
 
-        let credentials = { username: username.value, password: password.value };
-        postLoginPromise(credentials);
+        let token = login(credentials);
+        
+        console.log(token);
     }
 
-    function postLoginPromise(credentials){
-        return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials, {withCredentials: true})
-        .then(response => {
-            let token = response.data.token;
-            
-            if(!token){
-                console.log('no token');
-            } else {
-                console.log(token);
-            }
-            
+    function login(credentials){
+        axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials, {withCredentials: true})
+        .then(res => {
+            return Promise.resolve(res.data.token); // object { token: ... }
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+            console.log(err);
+        })
     }
 
     return (
@@ -66,6 +64,7 @@ export default () => {
                 </form>
             </div>
         </div>
-    );
+
+    )
 
 }
