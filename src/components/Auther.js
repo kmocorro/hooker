@@ -51,12 +51,12 @@ export default () => {
                             <h2 style={{textAlign: 'center', padding:'10px'}}>meta/fab4</h2>
                         </div>
                         <small className="form-text">Username</small>
-                            <input type="text" placeholder="username" className="form-control form-control-sm" required value={username.value} onChange={username.handleChange} />
+                            <input type="text" placeholder="username" className="form-control form-control-sm" required value={username.value} onChange={username.onChange} />
                         </div>
 
                         <div className="form-group">    
                         <small className="form-text">Password</small>
-                            <input type="password" placeholder="password" className="form-control form-control-sm" required value={password.value} onChange={password.handleChange} />
+                            <input type="password" placeholder="password" className="form-control form-control-sm" required value={password.value} onChange={password.onChange} />
                         </div>
                         <small className="form-text text-muted" style={{paddingTop: '10px', paddingBottom: '10px'}}>By logging in, you indicate that you have read and agree meta's Terms of Service.</small>
                         <input type="submit" value="login"  className="btn btn-outline-primary btn-block"/>
