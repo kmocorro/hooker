@@ -43,6 +43,7 @@ export default () => {
                 
                 console.log(token);
                 setToken(token);
+                window.location.reload(); // uhm...
             }
         })
         .catch(err => {
