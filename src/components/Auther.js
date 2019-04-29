@@ -41,7 +41,6 @@ export default () => {
             if(res.status >= 200 && res.status < 300 ){
                 let token = res.data.token // api/login return object {token: e...}
                 
-                console.log(token);
                 setToken(token);
                 window.location.reload(); // uhm...
             }
@@ -63,7 +62,6 @@ export default () => {
         const token = getToken();
         return !!token;
     }
-
 
     return (
         <div>
