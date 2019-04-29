@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { resolve } from 'url';
 
 export default () => {
 
     const username = useCredential();
     const password = useCredential();
 
-    function useCredential(){ // custom hook
+    function useCredential(){
         const [ value, setValue ] = useState('');
 
         function handleChange(e){
@@ -23,22 +22,47 @@ export default () => {
 
     function handleLoginSubmit(e){
         e.preventDefault();
-        let credentials = {username: username.value, password: password.value};
 
-        let token = login(credentials);
+        if(!loggedIn()){
+            let credentials = {username: username.value, password: password.value};
+
+            let token = login(credentials);
+            
+            console.log(token);
+            setToken(token);
+
+        } else {
+            console.log('Already signed in.');
+            console.log(getToken());
+        }
         
-        console.log(token);
     }
 
     function login(credentials){
         return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials, {withCredentials: true})
         .then(res => {
-            return res // object { token: ... }
+            if(res.status >= 200 && res.status < 300 ){
+                return res.data.token // api/login return object {token: e...}
+            }
         })
         .catch(err => {
             console.log(err);
         })
     }
+
+    function setToken(token){
+        localStorage.setItem('ldap_token', token);
+    }
+
+    function getToken(){
+        return localStorage.getItem('ldap_token');
+    }
+
+    function loggedIn(){
+        const token = getToken();
+        return !!token;
+    }
+
 
     return (
         <div>
