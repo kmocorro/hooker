@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 export default () => {
@@ -23,15 +23,20 @@ export default () => {
         e.preventDefault();
 
         let credentials = { username: username.value, password: password.value };
-        postLoginPromise(credentials).then(res => {console.log(res)});
+        postLoginPromise(credentials);
     }
 
     function postLoginPromise(credentials){
         return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials, {withCredentials: true})
         .then(response => {
-            console.log(response.data);
-
-            axios.get(`http://dev-metaspf401.sunpowercorp.com:8080/`, {withCredentials: true});
+            let token = response.data.token;
+            
+            if(!token){
+                console.log('no token');
+            } else {
+                console.log(token);
+            }
+            
         })
         .catch(err => console.error(err));
     }
