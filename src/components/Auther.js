@@ -25,11 +25,8 @@ export default () => {
 
         if(!loggedIn()){
             let credentials = {username: username.value, password: password.value};
-
-            let token = login(credentials);
             
-            console.log(token);
-            setToken(token);
+            login(credentials);
 
         } else {
             console.log('Already signed in.');
@@ -42,7 +39,10 @@ export default () => {
         return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials, {withCredentials: true})
         .then(res => {
             if(res.status >= 200 && res.status < 300 ){
-                return res.data.token // api/login return object {token: e...}
+                let token = res.data.token // api/login return object {token: e...}
+                
+                console.log(token);
+                setToken(token);
             }
         })
         .catch(err => {
