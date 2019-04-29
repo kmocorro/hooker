@@ -22,6 +22,7 @@ export default () => {
 
     function handleLoginSubmit(e){
         e.preventDefault();
+        document.getElementById('loginSubmit').disabled = true;
 
         if(!loggedIn()){
             let credentials = {username: username.value, password: password.value};
@@ -47,7 +48,7 @@ export default () => {
         })
         .catch(err => {
             console.log(err);
-        })
+        });
     }
 
     function setToken(token){
@@ -83,7 +84,7 @@ export default () => {
                             <input type="password" placeholder="password" className="form-control form-control-sm" required value={password.value} onChange={password.onChange} />
                         </div>
                         <small className="form-text text-muted" style={{paddingTop: '10px', paddingBottom: '10px'}}>By logging in, you indicate that you have read and agree meta's Terms of Service.</small>
-                        <input type="submit" value="login"  className="btn btn-outline-primary btn-block"/>
+                        <input type="submit" id="loginSubmit" value="login" disabled={false} className="btn btn-outline-primary btn-block" />
                     </fieldset>
                 </form>
             </div>
