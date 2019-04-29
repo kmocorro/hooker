@@ -25,7 +25,7 @@ export default () => {
 
         let credentials = {username: username.value, password: password.value};
     
-        login(credentials);
+        login(credentials); //hue hue
         
     }
 
