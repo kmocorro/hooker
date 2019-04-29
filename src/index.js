@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route } from 'react-router-dom';
 import App from './App';
 import Login from '../src/components/pages/login';
-import Login from '../src/components/pages/logout';
+import Logout from '../src/components/pages/logout';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
