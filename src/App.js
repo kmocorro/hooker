@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Auther from './components/Auther';
+import jwtDecode from 'jwt-decode';
 
 export default () => {
+
+    let decoded = jwtDecode(getToken());
+
+    console.log(decoded);
 
     function isLoggedIn(){
         let tokener = getToken();
@@ -12,7 +17,7 @@ export default () => {
     function getToken(){
         return localStorage.getItem('ldap_token');
     }
-
+    
     return (
         <div>
             { isLoggedIn()
