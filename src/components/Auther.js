@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { resolve } from 'url';
 
 export default () => {
 
@@ -30,9 +31,9 @@ export default () => {
     }
 
     function login(credentials){
-        axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials, {withCredentials: true})
+        return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials, {withCredentials: true})
         .then(res => {
-            return Promise.resolve(res.data.token); // object { token: ... }
+            return res // object { token: ... }
         })
         .catch(err => {
             console.log(err);
