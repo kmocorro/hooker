@@ -9,7 +9,7 @@ export default () => {
 
     function loggedIn(){
         const token = getToken();
-        return !!token;
+        return token;
     }
 
 
