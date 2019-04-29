@@ -23,15 +23,9 @@ export default () => {
     function handleLoginSubmit(e){
         e.preventDefault();
 
-        if(!loggedIn()){
-            let credentials = {username: username.value, password: password.value};
-            
-            login(credentials);
-
-        } else {
-            console.log('Already signed in.');
-            console.log(getToken());
-        }
+        let credentials = {username: username.value, password: password.value};
+    
+        login(credentials);
         
     }
 
@@ -53,16 +47,6 @@ export default () => {
     function setToken(token){
         localStorage.setItem('ldap_token', token);
     }
-
-    function getToken(){
-        return localStorage.getItem('ldap_token');
-    }
-
-    function loggedIn(){
-        const token = getToken();
-        return !!token;
-    }
-
 
     return (
         <div>
