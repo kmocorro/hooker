@@ -31,7 +31,7 @@ export default () => {
         .then(response => {
             console.log(response.data);
 
-            axios.get(`http://dev-metaspf401.sunpowercorp.com:8080/`, {withCredentials: true});
+            axios.get(`http://dev-metaspf401.sunpowercorp.com:8080/`, response.data, {withCredentials: true});
         })
         .catch(err => console.error(err));
     }
