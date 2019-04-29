@@ -23,9 +23,15 @@ export default () => {
     function handleLoginSubmit(e){
         e.preventDefault();
 
-        let credentials = {username: username.value, password: password.value};
-    
-        login(credentials); //hue hue
+        if(!loggedIn()){
+            let credentials = {username: username.value, password: password.value};
+            
+            login(credentials);
+
+        } else {
+            console.log('Already signed in.');
+            console.log(getToken());
+        }
         
     }
 
@@ -47,6 +53,16 @@ export default () => {
     function setToken(token){
         localStorage.setItem('ldap_token', token);
     }
+
+    function getToken(){
+        return localStorage.getItem('ldap_token');
+    }
+
+    function loggedIn(){
+        const token = getToken();
+        return !!token;
+    }
+
 
     return (
         <div>
