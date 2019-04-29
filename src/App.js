@@ -4,8 +4,8 @@ import Auther from './components/Auther';
 export default () => {
 
     function isLoggedIn(){
-        const token = getToken();
-        return token; //blnk false
+        let tokener = getToken();
+        return tokener; //blnk false
     }
 
     function getToken(){
