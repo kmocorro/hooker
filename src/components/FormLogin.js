@@ -21,14 +21,18 @@ export default () => {
     
     function handleSubmit(e){
         e.preventDefault();
-        
+
         let credentials = { username: username.value, password: password.value };
         postLoginPromise(credentials).then(res => {console.log(res)});
     }
 
     function postLoginPromise(credentials){
         return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials)
-        .then(response => response.data)
+        .then(response => {
+            console.log(response.data);
+
+            axios.get(`http://dev-metaspf401.sunpowercorp.com:8080/`, {withCredentials: true});
+        })
         .catch(err => console.error(err));
     }
 
