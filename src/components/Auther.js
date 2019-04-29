@@ -43,7 +43,7 @@ export default () => {
         <div>
             <div className="col-md-3">
                 <form
-                    onSubmit={handleSubmit}
+                    onSubmit={handleLoginSubmit}
                 >   
                     <fieldset>
                         <div className="form-group">

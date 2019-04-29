@@ -1,10 +1,10 @@
 import React from 'react';
-import FormLogin from './components/FormLogin';
+import Auther from './components/Auther';
 // hehe
 export default () => {
     return (
         <div>
-            <FormLogin />
+            <Auther />
         </div>
 
     )
