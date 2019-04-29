@@ -27,7 +27,7 @@ export default () => {
     }
 
     function postLoginPromise(credentials){
-        return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials)
+        return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials, {withCredentials: true})
         .then(response => {
             console.log(response.data);
 
