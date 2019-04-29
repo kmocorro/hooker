@@ -3,21 +3,20 @@ import Auther from './components/Auther';
 // hehe
 export default () => {
 
+    function isLoggedIn(){
+        const token = getToken();
+        return token; //blnk false
+    }
+
     function getToken(){
         return localStorage.getItem('ldap_token');
     }
 
-    function loggedIn(){
-        const token = getToken();
-        return token;
-    }
-
-
     return (
         <div>
-            { loggedIn
-                ? <Auther />
-                : <h1>hello</h1>
+            { isLoggedIn()
+                ? <h1>hello</h1>
+                : <Auther />
             }
         </div>
 
