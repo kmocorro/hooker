@@ -22,9 +22,12 @@ export default () => {
     }
 
     function onClickFileUpload(e){
+        setFile(null);
         setResponseFromUpload(null);
         setOkResponseFromUpload(null);
         setErrResponseFromUpload(null);
+
+        document.getElementById('rmp_submit_button').disabled = false;
     }
 
     function onFormSubmit(e){
@@ -61,13 +64,10 @@ export default () => {
         return axios.post('http://dev-metaspf401.sunpowercorp.com:8080/api/uploader/rmp', data, {withCredentials: true, configFile})
         .then(res => {
             if(res.status >= 200 && res.status < 300 ){
-
-                document.getElementById('rmp_submit_button').disabled = false;
                 document.getElementById('rmp_file_browser').disabled = false;
 
                 console.log(res.data);
 
-                setFile(null);
                 setSelectedFile('Choose file');
 
                 return res;
