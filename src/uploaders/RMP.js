@@ -23,6 +23,8 @@ export default () => {
 
     function onClickFileUpload(e){
         setResponseFromUpload(null);
+        setOkResponseFromUpload(null);
+        setErrResponseFromUpload(null);
     }
 
     function onFormSubmit(e){
@@ -95,14 +97,22 @@ export default () => {
                         </div>
                         <div>
                             <p>{responseFromUpload}</p>
-                            {okResponseFromUpload ? 
-                            okResponseFromUpload.map(ok => (
-                                <p key={ok}>{ok}</p>
-                            )):<></>}
-                            {errResponseFromUpload ?
-                            errResponseFromUpload.map(err => (
-                                <p key={err}>{err}</p>
-                            )):<></>}
+                            <ul className="list-group">
+                                {okResponseFromUpload ? 
+                                okResponseFromUpload.map(ok => (
+                                    <li key={ok} className="list-group-item d-flex justify-content-between align-items-center">
+                                        {ok}
+                                        <span class="badge badge-success">OK</span>
+                                    </li>
+                                )):<></>}
+                                {errResponseFromUpload ?
+                                errResponseFromUpload.map(err => (
+                                    <li key={err} className="list-group-item d-flex justify-content-between align-items-center">
+                                        {err}
+                                        <span class="badge badge-danger">Error</span>
+                                    </li>
+                                )):<></>}
+                            </ul>
                         </div>
                     </div>
                 </form>
