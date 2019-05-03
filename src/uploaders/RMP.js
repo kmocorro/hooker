@@ -9,6 +9,7 @@ export default () => {
     const [ responseFromUpload, setResponseFromUpload ] = useState(null);
     const [ okResponseFromUpload, setOkResponseFromUpload ] = useState(null);
     const [ errResponseFromUpload, setErrResponseFromUpload ] = useState(null);
+    const [ loadingBar, setLoadingBar ] = useState(true);
 
     function handleFileChange(e){
         setFile(e.target.files[0]);
@@ -34,6 +35,10 @@ export default () => {
         e.preventDefault();
         document.getElementById('rmp_submit_button').disabled = true;
         document.getElementById('rmp_file_browser').disabled = true;
+        document.getElementById("former").style.display = "none";
+        document.getElementById("loading_bar").style.display = "block";
+        
+        setLoadingBar(false);
 
         uploadFile(file).then((res) => {
 
@@ -49,6 +54,10 @@ export default () => {
             } else if(res.data.OK.length > 0 && res.data.ERR.length > 1) {
                 setResponseFromUpload('Warning! Some worksheets was not uploaded.');
             }
+
+
+            setLoadingBar(true);
+            
         });
     }
 
@@ -83,23 +92,31 @@ export default () => {
             <div className="card-body">
                 <h4 className="card-title">RMP</h4>
                 <h6 className="card-subtitle mb-2 text-muted">uploader</h6>
+                <div id="loading_bar" hidden={loadingBar}>
+                    <p className="lead">Please wait...</p>
+                    <div className="progress">
+                        <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style={{width: "100%"}}></div>
+                    </div>
+                </div>
                 <form
                     onSubmit={onFormSubmit}
                     id="upload_file"
                 >
                     <div className="form-group">
-                        <div className="input-group mb-3">
-                        <div className="custom-file">
-                            <input type="file" id="rmp_file_browser" className="custom-file-input" required onClick={onClickFileUpload} onChange={handleFileChange}/>
-                            <label className="custom-file-label" >
-                                {
-                                    selectedFile
-                                }
-                            </label>
-                        </div>
-                        <div className="input-group-append">
-                            <input type="submit" className="input-group-text" id="rmp_submit_button" defaultValue="Upload" />
-                        </div>
+                        <div id="former">
+                            <div className="input-group mb-3">
+                            <div className="custom-file">
+                                <input type="file" id="rmp_file_browser" className="custom-file-input" required onClick={onClickFileUpload} onChange={handleFileChange}/>
+                                <label className="custom-file-label" >
+                                    {
+                                        selectedFile
+                                    }
+                                </label>
+                            </div>
+                            <div className="input-group-append">
+                                <input type="submit" className="input-group-text" id="rmp_submit_button" defaultValue="Upload" />
+                            </div>
+                            </div>
                         </div>
                         <div>
                             <p className="lead">{responseFromUpload}</p>
