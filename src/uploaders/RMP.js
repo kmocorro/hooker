@@ -10,6 +10,7 @@ export default () => {
     const [ okResponseFromUpload, setOkResponseFromUpload ] = useState(null);
     const [ errResponseFromUpload, setErrResponseFromUpload ] = useState(null);
     const [ loadingBar, setLoadingBar ] = useState(true);
+    const [ selectSubmit, setSelectSubmit ] = useState(false);
 
     function handleFileChange(e){
         setFile(e.target.files[0]);
@@ -35,10 +36,9 @@ export default () => {
         e.preventDefault();
         document.getElementById('rmp_submit_button').disabled = true;
         document.getElementById('rmp_file_browser').disabled = true;
-        document.getElementById("former").style.display = "none";
-        document.getElementById("loading_bar").style.display = "block";
         
         setLoadingBar(false);
+        setSelectSubmit(true);
 
         uploadFile(file).then((res) => {
 
@@ -57,6 +57,7 @@ export default () => {
 
 
             setLoadingBar(true);
+            setSelectSubmit(false);
             
         });
     }
@@ -103,7 +104,7 @@ export default () => {
                     id="upload_file"
                 >
                     <div className="form-group">
-                        <div id="former">
+                        <div id="former" hidden={selectSubmit}>
                             <div className="input-group mb-3">
                             <div className="custom-file">
                                 <input type="file" id="rmp_file_browser" className="custom-file-input" required onClick={onClickFileUpload} onChange={handleFileChange}/>
