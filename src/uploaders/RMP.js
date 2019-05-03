@@ -44,7 +44,7 @@ export default () => {
             if(res.status >= 200 && res.status < 300 ){
                 setResponseFromUpload('File has been uploaded');
                 document.getElementById('rmp_submit_button').disabled = false;
-                console.log(res.data);
+                console.log(JSON.parse(res.data));
             }
         })
         .catch(err => {
