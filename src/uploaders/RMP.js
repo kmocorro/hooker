@@ -33,9 +33,7 @@ export default () => {
         document.getElementById('rmp_file_browser').disabled = true;
 
         uploadFile(file).then((res) => {
-            setFile(null);
-            setSelectedFile('Choose file');
-            
+
             if(res.data.OK.length > 0){
                 setOkResponseFromUpload(res.data.OK);
             }
@@ -68,6 +66,9 @@ export default () => {
                 document.getElementById('rmp_file_browser').disabled = false;
 
                 console.log(res.data);
+
+                setFile(null);
+                setSelectedFile('Choose file');
 
                 return res;
             }
