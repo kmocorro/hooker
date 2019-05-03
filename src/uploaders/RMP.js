@@ -33,17 +33,16 @@ export default () => {
         document.getElementById('rmp_file_browser').disabled = true;
 
         uploadFile(file).then((res) => {
-            if(res.data){
-                setFile(null);
-                setSelectedFile('Choose file');
-            }
+            setFile(null);
+            setSelectedFile('Choose file');
+            
             if(res.data.OK.length > 0){
                 setOkResponseFromUpload(res.data.OK);
             }
             if(res.data.ERR.length > 0){
                 setErrResponseFromUpload(res.data.ERR);
             }
-            if(res.data.OK.length > 0 && res.data.ERR.length == 0){
+            if(res.data.OK.length > 0 && res.data.ERR.length === 0){
                 setResponseFromUpload('All worksheets has been uploaded.');
 
             } else if(res.data.OK.length > 0 && res.data.ERR.length > 1) {
