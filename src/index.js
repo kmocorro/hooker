@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, HashRouter} from 'react-router-dom';
 import App from './App';
 import Login from '../src/components/pages/login';
 import Logout from '../src/components/pages/logout';
@@ -8,6 +8,7 @@ import RMP from '../src/uploaders/RMP';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
+  <HashRouter>
   <Router>
     <Switch>
       <Route exact path="/" component={App}></Route>
@@ -16,6 +17,7 @@ ReactDOM.render(
       <Route path="/uploader/rmp" component={RMP}></Route>
     </Switch>
   </Router>
+  </HashRouter>
 , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
