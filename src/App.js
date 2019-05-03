@@ -19,6 +19,7 @@ export default () => {
                 ? 
                 <div>
                     <h1>hello</h1>
+                    <Link to="/uploader/rmp">RMP</Link>
                     <Link to="/logout">logout</Link>
                 </div>
 
