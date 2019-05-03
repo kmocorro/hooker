@@ -33,11 +33,21 @@ export default () => {
         document.getElementById('rmp_file_browser').disabled = true;
 
         uploadFile(file).then((res) => {
+            if(res.data){
+                setFile(null);
+                setSelectedFile('Choose file');
+            }
             if(res.data.OK.length > 0){
                 setOkResponseFromUpload(res.data.OK);
             }
             if(res.data.ERR.length > 0){
                 setErrResponseFromUpload(res.data.ERR);
+            }
+            if(res.data.OK.length > 0 && res.data.ERR.length == 0){
+                setResponseFromUpload('All worksheets has been uploaded.');
+
+            } else if(res.data.OK.length > 0 && res.data.ERR.length > 1) {
+                setResponseFromUpload('Warning! Some worksheets was not uploaded.');
             }
         });
     }
@@ -54,8 +64,6 @@ export default () => {
         return axios.post('http://dev-metaspf401.sunpowercorp.com:8080/api/uploader/rmp', data, {withCredentials: true, configFile})
         .then(res => {
             if(res.status >= 200 && res.status < 300 ){
-
-                setResponseFromUpload('File has been uploaded');
 
                 document.getElementById('rmp_submit_button').disabled = false;
                 document.getElementById('rmp_file_browser').disabled = false;
@@ -96,20 +104,20 @@ export default () => {
                         </div>
                         </div>
                         <div>
-                            <p>{responseFromUpload}</p>
+                            <p className="lead">{responseFromUpload}</p>
                             <ul className="list-group">
                                 {okResponseFromUpload ? 
                                 okResponseFromUpload.map(ok => (
                                     <li key={ok} className="list-group-item d-flex justify-content-between align-items-center">
                                         {ok}
-                                        <span class="badge badge-success">OK</span>
+                                        <span className="badge badge-success">OK</span>
                                     </li>
                                 )):<></>}
                                 {errResponseFromUpload ?
                                 errResponseFromUpload.map(err => (
                                     <li key={err} className="list-group-item d-flex justify-content-between align-items-center">
                                         {err}
-                                        <span class="badge badge-danger">Error</span>
+                                        <span className="badge badge-danger">Error</span>
                                     </li>
                                 )):<></>}
                             </ul>
