@@ -25,6 +25,7 @@ export default () => {
 
     function onFormSubmit(e){
         e.preventDefault();
+        document.getElementById('rmp_submit_button').disabled = true;
 
         uploadFile(file);
     }
@@ -42,6 +43,7 @@ export default () => {
         .then(res => {
             if(res.status >= 200 && res.status < 300 ){
                 setResponseFromUpload('File has been uploaded');
+                document.getElementById('rmp_submit_button').disabled = false;
             }
         })
         .catch(err => {
@@ -71,7 +73,7 @@ export default () => {
                             </label>
                         </div>
                         <div className="input-group-append">
-                            <input type="submit" className="input-group-text" defaultValue="Upload" />
+                            <input type="submit" className="input-group-text" id="rmp_submit_button" defaultValue="Upload" />
                         </div>
                         </div>
                         <div>
