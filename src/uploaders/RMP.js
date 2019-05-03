@@ -68,8 +68,6 @@ export default () => {
 
                 console.log(res.data);
 
-                setSelectedFile('Choose file');
-
                 return res;
             }
         })
