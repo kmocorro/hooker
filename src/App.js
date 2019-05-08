@@ -19,11 +19,11 @@ export default () => {
             { isLoggedIn()
                 ? 
                 <div>
-                <Home/>
+                <Auther />
                 </div>
                 : 
                 <div>
-                <Auther />
+                <Home/>
                 </div>
             }
         </div>
