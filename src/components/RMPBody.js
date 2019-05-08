@@ -146,8 +146,14 @@ export default () => {
                                     padding: "14px 0px",
                                     borderTop: "1px solid rgb(241, 241, 241)",
                                 }}>
+                                
                                     <div id="loading_bar" hidden={loadingBar}>
-                                        <p>Please wait...</p>
+                                        <p style={{
+                                            display: "block",
+                                            textTransform: "uppercase",
+                                            fontSize: "12px",
+                                            letterSpacing: "1px",
+                                        }}>Please wait...</p>
                                     </div>
                                     <form
                                         onSubmit={onFormSubmit}
@@ -156,34 +162,87 @@ export default () => {
                                         <div>
                                             <div id="former" hidden={selectSubmit}>
                                                 <div>
-                                                <div>
-                                                    <input type="file" id="rmp_file_browser" required onClick={onClickFileUpload} onChange={handleFileChange}/>
-                                                    <label>
-                                                        {
-                                                            selectedFile
-                                                        }
-                                                    </label>
-                                                </div>
-                                                <div>
-                                                    <input type="submit" id="rmp_submit_button" defaultValue="Upload" />
-                                                </div>
+                                                    <div>
+                                                        <input type="file" id="rmp_file_browser" required onClick={onClickFileUpload} onChange={handleFileChange}/>
+                                                        <label>
+                                                            {
+                                                                selectedFile
+                                                            }
+                                                        </label>
+                                                    </div>
+                                                    <div style={{
+                                                        display: "block",
+                                                        margin:"10px 0 "
+                                                    }}>
+                                                        <input style={{
+                                                            display: "inline-flex",
+                                                            verticalAlign: "middle",
+                                                            WebkitBoxAlign: "center",
+                                                            alignItems: "center",
+                                                            WebkitBoxPack: "center",
+                                                            justifyContent: "center",
+                                                            minWidth: "200px",
+                                                            minHeight: "48px",
+                                                            lineHeight: "48px",
+                                                            marginTop: "0px",
+                                                            marginLeft: "0px",
+                                                            textTransform: "uppercase",
+                                                            whiteSpace: "nowrap",
+                                                            letterSpacing: "1px",
+                                                            fontSize: "12px",
+                                                            fontWeight: "500",
+                                                            color: "rgb(250, 250, 250)",
+                                                            opacity: "1",
+                                                            cursor: "pointer",
+                                                            background: "rgb(235, 84, 36)",
+                                                            borderWidth: "1px",
+                                                            borderStyle: "solid",
+                                                            borderColor: "rgb(235, 84, 36)",
+                                                            borderImage: "initial",
+                                                            borderRadius: "3px",
+                                                            padding: "0px 24px",
+                                                            transition: "border-color 0.25s ease 0s, background 0.25s ease 0s",
+                                                        }} type="submit" id="rmp_submit_button" defaultValue="Upload" />
+                                                    </div>
+
+                                                    <p style={{
+                                                        lineHeight: "1.6",
+                                                        color: "rgb(33, 33, 33)",
+                                                        fontSize: "14px",
+                                                        fontWeight: "400",
+                                                        margin: "1em 0px",
+                                                        display: "block",
+                                                        marginBlockStart: "1em",
+                                                        marginBlockEnd: "1em",
+                                                        marginInlineStart: "0px",
+                                                        marginInlineEnd: "0px",
+                                                        opacity: "0.5"
+                                                    }}>
+                                                        Upload using the standard format
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div>
                                                 <p>{responseFromUpload}</p>
-                                                <ul>
+                                                <ul style={{
+                                                    paddingLeft: "20px",
+                                                    flex: "1 0 100%",
+                                                    overflow: "hidden",
+                                                    transition: "all 0.3s ease-in-out 0s",
+                                                    listStyle: "none"
+                                                }}>
                                                     {okResponseFromUpload ? 
                                                     okResponseFromUpload.map(ok => (
                                                         <li key={ok}>
                                                             {ok}
-                                                            <span>OK</span>
+                                                            <span>...OK</span>
                                                         </li>
                                                     )):<></>}
                                                     {errResponseFromUpload ?
                                                     errResponseFromUpload.map(err => (
                                                         <li key={err}>
                                                             {err}
-                                                            <span>Error</span>
+                                                            <span>...Error</span>
                                                         </li>
                                                     )):<></>}
                                                 </ul>

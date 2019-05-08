@@ -24,7 +24,7 @@ export default () => {
         }
         
     }
-    
+
     return (
         <div style={{
             "position": "sticky",
@@ -66,7 +66,7 @@ export default () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/" style={{
+                            <p style={{
                                 display: "flex",
                                 alignItems: "flex-start",
                                 cursor: "pointer",
@@ -78,7 +78,7 @@ export default () => {
                                 textDecoration: "none",
                             }} onClick={manufacturing.handleOnClick} >
                             Manufacturing
-                            </Link>
+                            </p>
                             <ul style={{
                                 //marginLeft: "calc(26px)",
                                 paddingLeft: "20px",
@@ -149,7 +149,7 @@ export default () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/" style={{
+                                    <p style={{
                                         display: "flex",
                                         alignItems: "flex-start",
                                         cursor: "pointer",
@@ -161,7 +161,7 @@ export default () => {
                                         textDecoration: "none"
                                     }} onClick={visualFactory.handleOnClick} >
                                     Visual Factory
-                                    </Link>
+                                    </p>
                                 </li>
                                 <ul style={{
                                     //marginLeft: "calc(26px)",
@@ -251,7 +251,7 @@ export default () => {
                             </Link>
                         </li>
                         <li>
-                            <Link style={{
+                            <p style={{
                                 display: "flex",
                                 alignItems: "flex-start",
                                 cursor: "pointer",
@@ -263,7 +263,7 @@ export default () => {
                                 textDecoration: "none",
                             }} onClick={uploaders.handleOnClick}>
                             Uploader
-                            </Link>
+                            </p>
                             <ul style={{
                                 //marginLeft: "calc(26px)",
                                 paddingLeft: "20px",
