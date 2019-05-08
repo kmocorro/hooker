@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Auther from './components/Auther';
+import Home from './pages/Home';
+
 
 export default () => {
 
@@ -18,12 +19,12 @@ export default () => {
             { isLoggedIn()
                 ? 
                 <div>
-                    <h1>hello</h1>
-                    <Link to="/uploader/rmp">RMP</Link>{` `}
-                    <Link to="/logout">logout</Link>
+                    <Home/>
                 </div>
-
-                : <Auther />
+                : 
+                <div>
+                    <Auther />
+                </div>
             }
         </div>
 

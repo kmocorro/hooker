@@ -1,5 +1,5 @@
 import React from 'react';
-import Auther from '../Auther';
+import Auther from '../components/Auther';
 import { Redirect } from 'react-router-dom';
 
 export default () => {
