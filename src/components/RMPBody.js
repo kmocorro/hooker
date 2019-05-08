@@ -17,7 +17,7 @@ export default () => {
         if(e.target.files[0]){
             setSelectedFile(e.target.files[0].name);
         } else {
-            setSelectedFile('Choose file');
+            setSelectedFile('');
         }
         
     }
@@ -161,14 +161,20 @@ export default () => {
                                     >
                                         <div>
                                             <div id="former" hidden={selectSubmit}>
-                                                <div>
+                                                <div style={{
+                                                    display: "block",
+                                                    minWidth: "200px"
+                                                }}>
                                                     <div>
-                                                        <input type="file" id="rmp_file_browser" required onClick={onClickFileUpload} onChange={handleFileChange}/>
-                                                        <label>
-                                                            {
-                                                                selectedFile
-                                                            }
+                                                        <label style={{
+                                                            display: "block",
+                                                            margin: "10px 0",
+                                                        }}>
+                                                            {selectedFile}
                                                         </label>
+                                                        <input style={{
+                                                            display: "block"
+                                                        }} type="file" id="rmp_file_browser" required onClick={onClickFileUpload} onChange={handleFileChange}/>
                                                     </div>
                                                     <div style={{
                                                         display: "block",
@@ -181,7 +187,7 @@ export default () => {
                                                             alignItems: "center",
                                                             WebkitBoxPack: "center",
                                                             justifyContent: "center",
-                                                            minWidth: "200px",
+                                                            minWidth: "220px",
                                                             minHeight: "48px",
                                                             lineHeight: "48px",
                                                             marginTop: "0px",
